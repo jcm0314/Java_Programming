@@ -3,7 +3,7 @@ import java.util.Random; // 랜덤 정수 생서
 
 
 public class LAB1 {
-    enum Color {
+    enum Color { // 5번 문제를 위한 enum
         Red(255, 0, 0), 
         Green(0, 255, 0), 
         Blue(0, 0, 255), 
@@ -11,15 +11,15 @@ public class LAB1 {
         White(255, 255, 255), 
         Black(0, 0, 0);
 
-        private final int r, g, b;
+        private final int r, g, b; // r g b 저장할 변수(final로 고정) 선언
 
-        Color(int r, int g, int b) {
+        Color(int r, int g, int b) { // enum 선언으로 각각의 r g b 값으 설정
             this.r = r;
             this.g = g;
             this.b = b;
         }
     }
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception{ // main 함수
 
 
 
@@ -42,7 +42,7 @@ public class LAB1 {
 
 
         // 2
-        System.out.println("두번째 문제");
+        System.out.println("\n두번째 문제");
 
 		Random random = new Random(); // 랜덤 정수 객체 생서
         int ran = random.nextInt(101); // 랜덤 정수를 0~100의 값으로 설정
@@ -57,7 +57,7 @@ public class LAB1 {
 
 
         // 3
-        System.out.println("세번째 문제");
+        System.out.println("\n세번째 문제");
 
         int answer3; // answer3 선언
         int base = random.nextInt(10) + 1; // 1부터 10까지 생성
@@ -78,7 +78,7 @@ public class LAB1 {
 
 
         // 4
-        System.out.println("네번째 문제");
+        System.out.println("\n네번째 문제");
 
         Scanner scanner = new Scanner(System.in); // 사용자 입력값 받는 객체 생성
         int input_value; // 사용자 입력값을 받는 정수 변수 선언
@@ -96,25 +96,45 @@ public class LAB1 {
 
 
         // 5
-        System.out.println("다섯번째 문제");
+        System.out.println("\n다섯번째 문제");
 
-        scanner.nextLine();
+        scanner.nextLine(); //
         System.out.print("색상(Red, Green, Blue, Yellow, White, Black) 중 하나를 입력하시오: ");
-        String userInput = scanner.nextLine();
+        String userInput = scanner.nextLine(); // 앞의 nextInt 때문에 개행 문자 제거
 
-        Color[] colors = Color.values();
-        Color randomColor = colors[random.nextInt(colors.length)];
+        Color[] colors = Color.values(); // Color enum 값을 배열로 저장
+        Color randomColor = colors[random.nextInt(colors.length)]; // random 객체를 통해 색상 중 무작위로 선택
 
-        System.out.println("사용자 입력 색상: " + userInput);
-        System.out.println("랜덤 선택 색상: " + randomColor);
+        System.out.println("사용자 입력 색상: " + userInput); // 사용자 입력 값 
+        System.out.println("랜덤 선택 색상: " + randomColor); // 랜덤 값
 
-        if (userInput.equalsIgnoreCase(randomColor.name())) {
-            System.out.println("same");
-        } else {
-            System.out.println("different");
-        }
+        if (userInput.equalsIgnoreCase(randomColor.name())) { // 사용자 입력 값이랑 랜덤 값이 같으면 
+            System.out.println("The user selected const color and the random enum color is the same.");
+        } else { // 사용자 입력 값이랑 랜덤 값이 다르면
+            System.out.println("The user selected const color and the random enum color is different");
+        
+        scanner.close(); // 스캐너 자원 정리
 
-        scanner.close();
+
+        // 6
+        System.out.println("\n여섯번째 문제, your code"); // case 문에 익숙하지 않아서 case문을 your code로 했습니다.
+	
+        for (int month = 1; month <= 12; month++) { // 1월부터 12월까지
+            int days = 31;  // int days을 31로 선언
+
+            switch(month) {
+                case 2: // 2월
+                    days = 28;
+                    break; // case 문은 break를 꼭해줘야함. 만약 여기에 break 가 없으면 밑의 코드도 실행되서 30이됨.
+                case 4: case 6: case 9: case 11: // 30일로 끝나는 달
+                    days = 30;
+                    break;
+                default: // 31로 끝나는 달
+                    days = 31;
+            }
+
+            System.out.println(month + "month " + days + "days");
+        } 
     }
-    
+}
 }
