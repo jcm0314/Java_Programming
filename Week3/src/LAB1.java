@@ -1,5 +1,8 @@
-import java.util.Scanner;
-import java.util.Random; // 랜덤 정수 생서
+//LAB1, 자바프로그래밍2분반, 250326, 장천명(322023919)
+
+
+import java.util.Scanner; // 사용자 입력 받아들이는 기능 가져오기
+import java.util.Random; // 랜덤 생성 기능 가져오기
 
 
 public class LAB1 {
@@ -19,12 +22,25 @@ public class LAB1 {
             this.b = b;
         }
     }
+    public static int fastPower(int base, int exponent) { // static 메서드 선언
+
+        if (exponent == 0) return 1; // 기저 조건 추가 (왜냐하면 지수를 계속 반으로 나누어 재귀호출을 하기 때문에)
+
+        int half = fastPower(base, exponent / 2); // half는 base와 exponent의 절반
+
+        if (exponent % 2 == 0) { // 지수가 짝수일 때,
+            return half * half; // half * half로 x^(n/2))^2 빠르게 계산
+        } else { // 지수가 홀수일 때,
+            return base * half * half; // x*x^(n-1)로 빠르게 계산
+        }
+    }
+    
     public static void main(String[] args) throws Exception{ // main 함수
 
 
 
 
-        // 1
+        // 1번 문제
         System.out.println("첫번째 문제");
 
         int a = 3; // 첫 번째 분수 분자
@@ -32,8 +48,8 @@ public class LAB1 {
         int c = 15; // 두 번째 분수 분자
         int d = 2; // 두 번째 분수 분모 
 
-        int child = a * c;
-		int parent = b * d;
+        int child = a * c; // 분자
+		int parent = b * d; // 분모
         
         double result = (double) child/parent; // 소수점으로 출력해야 하기 때문에 double로 바꿈 
         System.out.printf("결과: %.9f\n", result); // 포매팅하여 아옵번째까지 소수점 출력
@@ -41,43 +57,38 @@ public class LAB1 {
 
 
 
-        // 2
+        // 2번 문제
         System.out.println("\n두번째 문제");
 
-		Random random = new Random(); // 랜덤 정수 객체 생서
-        int ran = random.nextInt(101); // 랜덤 정수를 0~100의 값으로 설정
+		Random random = new Random(); // 랜덤 정수 객체 생성
+        int ran = random.nextInt(100) + 1; // 랜덤 정수를 0~100의 값으로 설정
         if (ran % 3 == 0) {
-            System.out.println("The number " + ran + " is a multiple of 3"); // 3일 때, 출력갑
+            System.out.println("The number " + ran + " is a multiple of 3"); // 3일 때, 출력값
         }
         else {
-            System.out.println("The number " + ran + " is not a multiple of 3"); // 3이 아닐 때, 출력 갑
+            System.out.println("The number " + ran + " is not a multiple of 3"); // 3이 아닐 때, 출력 값
         }
 
 
 
 
-        // 3
+        // 3번 문제
         System.out.println("\n세번째 문제");
 
-        int answer3; // answer3 선언
-        int base = random.nextInt(10) + 1; // 1부터 10까지 생성
-        int exponent = random.nextInt(6) + 1; // 1부터 6까지 생성
-        System.out.println("base = " + base + ", exponent = " + exponent); // base, exponent 값 출력
-        
-        if (Math.pow(base, exponent) % 2 == 0) { // 짝수일 때
-            double half = Math.pow(base, exponent/2); // base^(exponent/2) 값 
-			answer3 = (int) Math.pow(half,2); // (base^(exponent/2))^2 값
-            System.out.println(answer3); // 결과값 출력
-        } 
-        else { // 홀수일 떄
-            answer3 = (int) (base * Math.pow(base, exponent - 1)); //base * base^(eexponent-1) 값
-            System.out.println(answer3); // 결과값 출력
-        }
+        int base = random.nextInt(10) + 1;      // 1부터 10까지
+        int exponent = random.nextInt(6) + 1;   // 1부터 6까지
+
+        System.out.println("base = " + base + ", exponent = " + exponent);
+
+        int result3 = fastPower(base, exponent); // 빠른 지수 계산 함수
+        System.out.println(base + "^" + exponent + " = " + result3);
+    
 
 
 
 
-        // 4
+
+        // 4번 문제
         System.out.println("\n네번째 문제");
 
         Scanner scanner = new Scanner(System.in); // 사용자 입력값 받는 객체 생성
@@ -95,7 +106,7 @@ public class LAB1 {
 
 
 
-        // 5
+        // 5번 문제
         System.out.println("\n다섯번째 문제");
 
         scanner.nextLine(); //
@@ -113,10 +124,9 @@ public class LAB1 {
         } else { // 사용자 입력 값이랑 랜덤 값이 다르면
             System.out.println("The user selected const color and the random enum color is different");
         
-        scanner.close(); // 스캐너 자원 정리
 
 
-        // 6
+        // 6번 문제
         System.out.println("\n여섯번째 문제, your code"); // case 문에 익숙하지 않아서 case문을 your code로 했습니다.
 	
         for (int month = 1; month <= 12; month++) { // 1월부터 12월까지
@@ -128,13 +138,14 @@ public class LAB1 {
                     break; // case 문은 break를 꼭해줘야함. 만약 여기에 break 가 없으면 밑의 코드도 실행되서 30이됨.
                 case 4: case 6: case 9: case 11: // 30일로 끝나는 달
                     days = 30;
-                    break;
-                default: // 31로 끝나는 달
+                    break; 
+                default: // 디폴트값을 31로 설정
                     days = 31;
             }
 
-            System.out.println(month + "month " + days + "days");
+            System.out.println(month + " month, " + days + " days"); // 정상적으로 나오는지 확인인
         } 
     }
+    scanner.close(); // 스캐너 자원 정리
 }
 }
