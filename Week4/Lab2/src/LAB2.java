@@ -1,8 +1,10 @@
+// LAB2, 자바프로그래밍, 2분반, 2025.04.02, 32203919, 장천명
+
 import java.util.*;
 
 public class LAB2 {
 
-    // 문제 1: fraction 연산
+    // 문제 1
     public static void fraction(double a, double b, double c, double d) { // fraction 메서드드 구현
         double add = (a * d + b * c) / (b * d); // 실수형 이므로 double로
         double sub = (a * d - b * c) / (b * d);
@@ -15,7 +17,7 @@ public class LAB2 {
         System.out.printf("Fraction Division: %.1f/%.1f / %.1f/%.1f = %.1f/%.1f\n", a, b, c, d, (a*d), (b*c));
     }
 
-    // 문제 2: 숫자 성질 확인
+    // 문제 2
     public static int getRandomIntBetween(int a, int b) { // getRandomIntBetween 메서드 구현
         return new Random().nextInt(b - a + 1) + a;
     }
@@ -42,14 +44,14 @@ public class LAB2 {
         System.out.println(num + (isPrime(num) ? " is a prime number." : " is NOT a prime number.")); // 소수인지 판별별
     }
 
-    // 문제 3: 빠른 지수 계산
+    // 문제 3
     public static long powerCalculation(long base, long exponent) { // powerCalculation 메서드 구현
         if (exponent == 0) return 1; // 기저 조건 설정
         long half = powerCalculation(base, exponent / 2); // 절반 지수로 재귀
         return exponent % 2 == 0 ? half * half : base * half * half; // 홀짝 구분
     }
 
-    // 문제 4: 구구단 출력
+    // 문제 4
     public static int getUserInputBetween(String msg, int min, int max, Scanner scanner) { // getUserInputBetween 메서드 구현, 매개변수는 multiplicationTable에서 받을 예정정
         int value; 
         do {
@@ -68,7 +70,7 @@ public class LAB2 {
         }
     }
 
-    // 문제 5: Color enum 처리
+    // 문제5 
     enum Color { // 열거형 Color 정의
         RED(255,0,0), GREEN(0,255,0), BLUE(0,0,255),
         YELLOW(255,255,0), WHITE(255,255,255), BLACK(0,0,0);
@@ -87,7 +89,7 @@ public class LAB2 {
         }
     }
 
-    // 문제 6: 소수점 자리 반올림
+    // 문제 6
     public static double decimalValue(double num, int decimalPlace) { // decimalValue 메서드 구현
         double floor = Math.floor(num); // 소수점 아래를 버린 정수
         double fraction = num - floor; // 소수 부분만, 1번의 fraction과 충돌될 수 있지 않을까 싶은데 서로 다른 영역에 존재하므로 상관 X
@@ -95,17 +97,17 @@ public class LAB2 {
         return rounded; // 소수 부분 decimalPlace자리 반올림 한 것것 반환
     }
 
-    // 문제 7: 모음만 대문자로
+    // 문제 7
     public static String emphasizeVowels(String str) { // emphasizeVowels 메서드 구현
         String vowels = "aeiouAEIOU"; // 모음 정의
         StringBuilder sb = new StringBuilder(); // 문자열을 빠르게 연결하거나 수정시키는 문자열 조립 도구 객체 생성
         for (char c : str.toCharArray()) { // c에 문자열을 문자 배열로 변환, 각 문자 하나를 c에 할당하여 순회
-            sb.append(vowels.indexOf(c) >= 0 ? Character.toUpperCase(c) : Character.toLowerCase(c)); // 삼항 연산자로, c가 vowels에 포함되어 있다면 대문자는 소문자로, 소문자는 대문자로 변환환
+            sb.append(vowels.indexOf(c) >= 0 ? Character.toUpperCase(c) : Character.toLowerCase(c)); // 삼항 연산자로, c가 vowels에 포함되어 있다면 대문자로, 아니라면 소문자로 변환
         }
         return sb.toString(); // 모든 변환을 마친 후, StringBuilder를 통하여 문자열로 변환
     }
 
-    // 문제 8: 시간 변환
+    // 문제 8
     public static int convertToSeconds(int h, int m, int s) { // 초로 변환하는 convertTSEconds 메서드 구현
         int total = h * 3600 + m * 60 + s; // 시간 단위 * 3600 + 분 단위 * 60 + 초초
         System.out.printf("%d hours, %d minutes, %d seconds converted to total seconds is: %d sec\n", h, m, s, total);
@@ -119,7 +121,7 @@ public class LAB2 {
         System.out.printf("%d seconds is: %d hours, %d minutes, %d seconds\n", total, hours, minutes, seconds);
     }
 
-    // 문제 9: 좌석표 출력
+    // 문제 9
     public static String[][] createSeatingChart(int rows, int cols) { // 좌석 만들기 createSeatingChart 메서드 구현현
         String[][] chart = new String[rows][cols]; // 2차원 배열로 행 * 열 의 크기를 가지는 chart 객체 생성
         for (int r = 0; r < rows; r++) // 행
@@ -197,5 +199,8 @@ public class LAB2 {
 
         System.out.println("\n9번 문제");
         seatingChart();
+
+        System.out.println("\n10번 문제");
+        System.out.println("3.14159265 Decimal5 value: " + decimalValue(3.14159265, -1));
     }
 }
