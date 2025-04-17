@@ -26,6 +26,20 @@ public class HW3 {
             System.out.println(aq);
         }
 
+        // PM2.5 농도만을 기준으로 검색 (20~50)
+        System.out.println("\n== PM25 20~50 조건 검색 ==");
+        AirQuality[] filteredByPm25 = AirQualityFinder.findByPm25(parsed, 20, 50);
+        for (AirQuality aq : filteredByPm25) {
+            System.out.println(aq);
+        }
+
+        // PM10 농도만을 기준으로 검색 (40~60)
+        System.out.println("\n== PM10 40~60 조건 검색 ==");
+        AirQuality[] filteredByPm10 = AirQualityFinder.findByPm10(parsed, 40, 60);
+        for (AirQuality aq : filteredByPm10) {
+            System.out.println(aq);
+        }
+
         // 각 측정소의 대기질 등급 출력
         System.out.println("\n== 각 측정소 등급 출력 ==");
         for (AirQuality aq : parsed) {
