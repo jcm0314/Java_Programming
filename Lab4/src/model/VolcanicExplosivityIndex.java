@@ -23,7 +23,7 @@ public enum VolcanicExplosivityIndex {
         return value;
     }
     public static VolcanicExplosivityIndex fromInt(int value) {
-        for (VolcanicExplosivityIndex vei : values()) {
+        for (VolcanicExplosivityIndex vei : values()) { // values는 enum에서 자동으로 제공되는 특별한 메서드드
             if (vei.value == value) {
                 return vei;
             }

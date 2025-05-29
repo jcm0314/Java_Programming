@@ -14,14 +14,14 @@ public class VolcanoVeiFinder implements IVolcanoFinder {
 
     @Override
     public Volcano[] find(Volcano[] volcanoes) {
-        ArrayList<Volcano> result = new ArrayList<>();
-        
-        for (Volcano volcano : volcanoes) {
+        ArrayList<Volcano> result = new ArrayList<>(); // 동적 크기 배열 생성
+        // 크기가 가변적, 추가가 용이, 메모리 효율적적
+        for (Volcano volcano : volcanoes) { // 반복문과 조건 검사
             if (volcano.getVei() == vei.getValue()) {
                 result.add(volcano);
             }
         }
         
-        return result.toArray(new Volcano[0]);
+        return result.toArray(new Volcano[0]); // 배열 반환환
     }
 } 

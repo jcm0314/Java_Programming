@@ -7,6 +7,6 @@ import model.Volcano;
 public class VolcanoDayComparator implements Comparator<Volcano> {
     @Override
     public int compare(Volcano v1, Volcano v2) {
-        return Integer.compare(v1.getDay(), v2.getDay());
+        return Integer.compare(v1.getDay(), v2.getDay()); // 안전한 정수 비교를 위해서 Integer 사용
     }
 } 

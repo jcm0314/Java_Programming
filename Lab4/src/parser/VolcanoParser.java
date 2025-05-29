@@ -17,7 +17,7 @@ public class VolcanoParser {
             
             // 데이터 파싱
             int year = Integer.parseInt(data[0]);
-            int month = Integer.parseInt(data[1]);
+            int month = Integer.parseInt(data[1]); // parseInt는 문자열을 숫자로 변환하는 Java의 정적 메서드
             int day = data[2].isEmpty() ? 0 : Integer.parseInt(data[2]);  // 빈 문자열 처리
             String name = data[3];
             String region = data[4];  // 지역 정보 추가
