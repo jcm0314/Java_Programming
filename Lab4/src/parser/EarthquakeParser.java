@@ -1,6 +1,8 @@
 // LAB4, 자바 프로그래밍, 2분반, 25.05.20, 32203919 장천명
 package parser;
 
+import java.util.ArrayList;
+import java.util.List;
 import model.Earthquake;
 
 /**
@@ -8,12 +10,12 @@ import model.Earthquake;
  * 문자열 배열 형태의 데이터를 Earthquake 객체 배열로 변환
  * 빈 문자열 처리 및 데이터 타입 변환 기능 포함
  */
-public class EarthquakeParser {
-    public static Earthquake[] parse(String[][] earthquakeData) {
-        Earthquake[] earthquakes = new Earthquake[earthquakeData.length];
+public class EarthquakeParser implements IParser<Earthquake> {
+    @Override
+    public List<Earthquake> parse(String[][] earthquakeData) {
+        List<Earthquake> earthquakes = new ArrayList<>();
         
-        for (int i = 0; i < earthquakeData.length; i++) {
-            String[] data = earthquakeData[i];
+        for (String[] data : earthquakeData) {
             
             // 데이터 파싱
             int year = Integer.parseInt(data[0]);
@@ -26,8 +28,8 @@ public class EarthquakeParser {
             double magnitude = Double.parseDouble(data[7]);
             
             // Earthquake 객체 생성
-            earthquakes[i] = new Earthquake(year, month, day, location,
-                                         latitude, longitude, depth, magnitude);
+            earthquakes.add(new Earthquake(year, month, day, location,
+                                         latitude, longitude, depth, magnitude));
         }
         
         return earthquakes;
