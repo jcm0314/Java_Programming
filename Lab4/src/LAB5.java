@@ -71,24 +71,33 @@ public class LAB5 {
             };
            
         // 파서 생성
+        /* 
         VolcanoParser volcanoParser = new VolcanoParser();
         EarthquakeParser earthquakeParser = new EarthquakeParser();
+        */
         TsunamiParser tsunamiParser = new TsunamiParser();
 
         // 파싱
+        /*
         List<Volcano> volcanoList = volcanoParser.parse(volcanoData);
         List<Earthquake> earthquakeList = earthquakeParser.parse(earthquakeData);
+        */
         List<Tsunami> tsunamiList = tsunamiParser.parse(tsunamiData);
 
         // 배열로 변환
+        /* 
         Volcano[] volcanoes = volcanoList.toArray(new Volcano[0]);
         Earthquake[] earthquakes = earthquakeList.toArray(new Earthquake[0]);
+        */
         Tsunami[] tsunamis = tsunamiList.toArray(new Tsunami[0]);
 
         PrintUtil.printTitle("Finder 테스트");
+        /* 
         PrintUtil.printCount("화산", volcanoes.length);
         PrintUtil.printCount("지진", earthquakes.length);
-        
+        */
+        PrintUtil.printCount("쓰나미", tsunamis.length);
+        /* 
         // Volcano Finder 테스트
         PrintUtil.printTitle("1. Volcano Country Finder 테스트");
         VolcanoCountryFinderStrategy countryStrategy = new VolcanoCountryFinderStrategy("Italy");
@@ -144,13 +153,13 @@ public class LAB5 {
         for (Earthquake e : strongEarthquakes) {
             System.out.println(e);
         }
-
+*/
         // Tsunami Finder 테스트
         PrintUtil.printTitle("7. Tsunami Event Validity Finder 테스트");
-        TsunamiEventValidityFinderStrategy validityStrategy = new TsunamiEventValidityFinderStrategy(TsunamiEventValidity.VALID_EVENT);
+        TsunamiEventValidityFinderStrategy validityStrategy = new TsunamiEventValidityFinderStrategy(TsunamiEventValidity.DEFINITE_TSUNAMI);
         Finder<Tsunami> validityFinder = new Finder<>(validityStrategy);
         List<Tsunami> validTsunamis = validityFinder.find(tsunamiList);
-        System.out.println("유효한 쓰나미 이벤트:");
+        System.out.println("확실한 쓰나미 이벤트:");
         for (Tsunami t : validTsunamis) {
             System.out.println(t);
         }
@@ -190,7 +199,7 @@ public class LAB5 {
         for (Tsunami t : manyRunupTsunamis) {
             System.out.println(t);
         }
-
+/* 
         PrintUtil.printTitle("Sorter 테스트");
         
         // Volcano Sorter 테스트
@@ -220,7 +229,7 @@ public class LAB5 {
         for (Earthquake e : earthquakes) {
             System.out.println(e);
         }
-
+*/
         // Tsunami Sorter 테스트
         PrintUtil.printTitle("3. Tsunami Sorter 테스트");
         System.out.println("이벤트 유효성 기준 정렬:");

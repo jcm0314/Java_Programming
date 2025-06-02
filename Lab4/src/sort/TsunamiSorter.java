@@ -2,7 +2,6 @@
 package sort;
 
 import model.Tsunami;
-import model.NaturalHazard;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Collections;

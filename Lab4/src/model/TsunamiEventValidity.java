@@ -21,7 +21,9 @@ public enum TsunamiEventValidity {
     // 코드에 해당하는 validity 반환
     public static TsunamiEventValidity fromCode(int code) {
         for (TsunamiEventValidity validity : values()) {
-            return validity;
+            if (validity.getCode() == code) {
+                return validity;
+            }
         }
         throw new IllegalArgumentException("Invalid tsunami event validity code: " + code);
     }
