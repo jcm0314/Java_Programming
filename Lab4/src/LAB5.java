@@ -1,14 +1,12 @@
-// LAB4, 자바 프로그래밍, 2분반, 25.06.04, 32203919 장천명
+// LAB5, 자바 프로그래밍, 2분반, 25.06.04, 32203919 장천명
 import model.*;
 import parser.*;
 import finder.*;
 import sort.*;
 import util.PrintUtil;
 import java.util.List;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.io.FileWriter; // 파일 쓰기
+import java.io.IOException; // 파일 쓰기 예외 처리
 
 
 /**
@@ -160,8 +158,11 @@ public class LAB5 {
 */
         // Tsunami Finder 테스트
         PrintUtil.printTitle("7. Tsunami Event Validity Finder 테스트");
+        // 확실한 쓰나미 이벤트 검색
         TsunamiEventValidityFinderStrategy validityStrategy = new TsunamiEventValidityFinderStrategy(TsunamiEventValidity.DEFINITE_TSUNAMI);
+        // 도구 준비
         Finder<Tsunami> validityFinder = new Finder<>(validityStrategy);
+        // 실제 데이터 걸러내기기
         List<Tsunami> validTsunamis = validityFinder.find(tsunamiList);
         System.out.println("확실한 쓰나미 이벤트:");
         for (Tsunami t : validTsunamis) {
