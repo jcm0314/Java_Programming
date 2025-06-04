@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Collections;
 
 public class NaturalHazardSorter { 
-    public static <T extends NaturalHazard> void sort(List<T> hazards, Comparator<? super NaturalHazard> comparator) { // 제네릭 타입 T는 NaturalHazard 클래스를 상속받은 클래스만 가능
+    public static <T extends NaturalHazard> void sort(List<T> hazards, Comparator<? super NaturalHazard> comparator) { 
+        // 제네릭 타입 T는 NaturalHazard 클래스를 상속받은 클래스만 가능
         Collections.sort(hazards, comparator); // 컬렉션 정렬
     }
 } 

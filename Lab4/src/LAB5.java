@@ -1,10 +1,14 @@
-// LAB4, 자바 프로그래밍, 2분반, 25.05.20, 32203919 장천명
+// LAB4, 자바 프로그래밍, 2분반, 25.06.04, 32203919 장천명
 import model.*;
 import parser.*;
 import finder.*;
 import sort.*;
 import util.PrintUtil;
 import java.util.List;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -163,6 +167,7 @@ public class LAB5 {
         for (Tsunami t : validTsunamis) {
             System.out.println(t);
         }
+        saveToCSV(validTsunamis, "definite_tsunamis.csv");
 
         PrintUtil.printTitle("8. Tsunami Cause Code Finder 테스트");
         TsunamiCauseCodeFinderStrategy causeStrategy = new TsunamiCauseCodeFinderStrategy(TsunamiCauseCode.EARTHQUAKE);
@@ -172,6 +177,7 @@ public class LAB5 {
         for (Tsunami t : earthquakeTsunamis) {
             System.out.println(t);
         }
+        saveToCSV(earthquakeTsunamis, "earthquake_tsunamis.csv");
 
         PrintUtil.printTitle("9. Tsunami Country Finder 테스트");
         TsunamiCountryFinderStrategy tsunamiCountryStrategy = new TsunamiCountryFinderStrategy("JAPAN");
@@ -181,6 +187,7 @@ public class LAB5 {
         for (Tsunami t : japanTsunamis) {
             System.out.println(t);
         }
+        saveToCSV(japanTsunamis, "japan_tsunamis.csv");
 
         PrintUtil.printTitle("10. Tsunami Maximum Water Height Finder 테스트");
         TsunamiMaximumWaterHeightFinderStrategy heightStrategy = new TsunamiMaximumWaterHeightFinderStrategy(5.0, 20.0);
@@ -190,6 +197,7 @@ public class LAB5 {
         for (Tsunami t : highTsunamis) {
             System.out.println(t);
         }
+        saveToCSV(highTsunamis, "high_water_tsunamis.csv");
 
         PrintUtil.printTitle("11. Tsunami Number of Runup Finder 테스트");
         TsunamiNumberOfRunupFinderStrategy runupStrategy = new TsunamiNumberOfRunupFinderStrategy(100, 500);
@@ -199,6 +207,7 @@ public class LAB5 {
         for (Tsunami t : manyRunupTsunamis) {
             System.out.println(t);
         }
+        saveToCSV(manyRunupTsunamis, "many_runup_tsunamis.csv");
 /* 
         PrintUtil.printTitle("Sorter 테스트");
         
@@ -237,30 +246,35 @@ public class LAB5 {
         for (Tsunami t : tsunamiList) {
             System.out.println(t);
         }
+        saveToCSV(tsunamiList, "sorted_by_validity.csv");
 
         PrintUtil.printTitle("원인 코드 기준 정렬");
         TsunamiSorter.sortByCauseCode(tsunamiList);
         for (Tsunami t : tsunamiList) {
             System.out.println(t);
         }
+        saveToCSV(tsunamiList, "sorted_by_cause.csv");
 
         PrintUtil.printTitle("국가 기준 정렬");
         TsunamiSorter.sortByCountry(tsunamiList);
         for (Tsunami t : tsunamiList) {
             System.out.println(t);
         }
+        saveToCSV(tsunamiList, "sorted_by_country.csv");
 
         PrintUtil.printTitle("최대 수위 기준 정렬");
         TsunamiSorter.sortByMaximumWaterHeight(tsunamiList);
         for (Tsunami t : tsunamiList) {
             System.out.println(t);
         }
+        saveToCSV(tsunamiList, "sorted_by_water_height.csv");
 
         PrintUtil.printTitle("런업 횟수 기준 정렬");
         TsunamiSorter.sortByNumberOfRunup(tsunamiList);
         for (Tsunami t : tsunamiList) {
             System.out.println(t);
         }
+        saveToCSV(tsunamiList, "sorted_by_runup.csv");
 
         PrintUtil.printTitle("통합 정렬 메소드 테스트");
         System.out.println("연도 기준 정렬 (criteria=0):");
@@ -268,11 +282,45 @@ public class LAB5 {
         for (Tsunami t : tsunamiList) {
             System.out.println(t);
         }
+        saveToCSV(tsunamiList, "sorted_by_year.csv");
 
         PrintUtil.printTitle("최대 수위 기준 정렬 (criteria=8)");
         TsunamiSorter.sort(tsunamiList, 8);
         for (Tsunami t : tsunamiList) {
             System.out.println(t);
+        }
+        saveToCSV(tsunamiList, "sorted_by_water_height_criteria8.csv");
+    }
+
+    /**
+     * your code
+     * 쓰나미 데이터를 CSV 파일로 저장하는 메서드
+     */
+    private static void saveToCSV(List<Tsunami> tsunamis, String filename) {
+        try (FileWriter writer = new FileWriter(filename)) {
+            // CSV 헤더 작성
+            writer.write("Year,Month,Day,Event Validity,Cause Code,Country,Location,Latitude,Longitude,Max Water Height,Number of Runup\n");
+            
+            // 데이터 작성
+            for (Tsunami t : tsunamis) {
+                writer.write(String.format("%s,%s,%s,%s,%s,%s,%s,%.3f,%.3f,%.2f,%d\n",
+                    t.getYear(),
+                    t.getMonth(),
+                    t.getDay(),
+                    t.getTsunamiEventValidity(),
+                    t.getTsunamiCauseCode(),
+                    t.getCountry(),
+                    t.getLocation(),
+                    t.getLatitude(),
+                    t.getLongitude(),
+                    t.getMaximumWaterHeight(),
+                    t.getNumberOfRunup()
+                ));
+            }
+            
+            System.out.println("\n결과가 " + filename + " 파일로 저장되었습니다.");
+        } catch (IOException e) {
+            System.err.println("CSV 파일 저장 중 오류가 발생했습니다: " + e.getMessage());
         }
     }
 }

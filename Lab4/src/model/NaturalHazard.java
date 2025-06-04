@@ -1,11 +1,11 @@
-// LAB4, 자바 프로그래밍, 2분반, 25.05.20, 32203919 장천명
+// LAB4, 자바 프로그래밍, 2분반, 25.06.04, 32203919 장천명
 package model;
 
 /**
  * 자연재해의 기본 추상 클래스
  * 모든 자연재해(지진, 화산 등)의 공통 속성을 정의
  */
-public abstract class NaturalHazard {
+public abstract class NaturalHazard { // 자연재해의 기본 추상 클래스
     private int year;
     private int month;
     private int day;

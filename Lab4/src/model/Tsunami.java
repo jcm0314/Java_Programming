@@ -1,6 +1,8 @@
+// LAB4, 자바 프로그래밍, 2분반, 25.06.04, 32203919 장천명
+
 package model;
 
-public class Tsunami extends NaturalHazard {
+public class Tsunami extends NaturalHazard { 
     private TsunamiEventValidity tsunamiEventValidity;
     private TsunamiCauseCode tsunamiCauseCode;
     private String country;
