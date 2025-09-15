@@ -11,7 +11,7 @@ public class WordRepository {
     // 이미 있으면 개수만 증가, 없으면 새로 추가합니다.
     public void addWord(Word word) {
         char key = word.getValue().charAt(0); // 단어의 첫 글자를 키로 사용
-        List<CountableWord> list = map.computeIfAbsent(key, k -> new ArrayList<>());
+        List<CountableWord> list = map.computeIfAbsent(key, k -> new ArrayList<>()); // 첫 글자가 없으면 새로운 빈 리스트 생성
         for (CountableWord cw : list) {
             if (cw.getWord().equals(word)) {
                 cw.increaseCount(); // 이미 있으면 개수만 증가
