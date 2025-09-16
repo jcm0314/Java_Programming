@@ -13,6 +13,11 @@ public final class Word {
         return value;
     }
 
+    // yourcode: 단어의 길이를 반환합니다.
+    public int getLength() {
+        return value.length();
+    }
+
     // 두 Word 객체가 같은지 비교합니다.
     // 내부의 value(문자열)가 같으면 같은 것으로 간주합니다.
     @Override

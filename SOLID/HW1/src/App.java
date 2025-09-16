@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 
 public class App {
     public static final String FRUITS_CSV = "fruits.csv";
@@ -41,5 +42,20 @@ public class App {
         repository.addWord(new Word(normalizer.normalize("date")));
         System.out.println("== date 추가 후 ==");
         printer.print(repository.getAll());
+
+        // yourcode: 단어 길이 기능 테스트
+        System.out.println("\n=== yourcode: 단어 길이 기능 테스트 ===");
+        testWordLengthFeature(repository);
+    }
+
+    // yourcode: 단어 길이 기능을 테스트하는 메서드
+    private static void testWordLengthFeature(WordRepository repository) {
+        System.out.println("단어별 길이 정보:");
+        for (Map.Entry<Character, List<CountableWord>> entry : repository.getAll().entrySet()) {
+            for (CountableWord cw : entry.getValue()) {
+                Word word = cw.getWord();
+                System.out.println("- " + word + " (길이: " + word.getLength() + "글자, 개수: " + cw.getCount() + "번)");
+            }
+        }
     }
 }
