@@ -3,6 +3,10 @@ package minmaxfinder;
 public class MinMaxFinder {
     private IComparator comparator = null;
 
+    public MinMaxFinder() {
+        this.comparator = new NaturalNumComparator();
+    }
+
     public MinMaxFinder(IComparator comparator) {
         this.comparator = comparator;
     }

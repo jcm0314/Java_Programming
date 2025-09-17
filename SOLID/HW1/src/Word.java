@@ -1,5 +1,5 @@
 // Word 클래스는 "단어" 하나를 표현하는 클래스입니다. (예: "apple")
-public final class Word {
+public class Word {
     // 실제 단어(문자열)를 저장하는 필드입니다.
     private final String value;
 
