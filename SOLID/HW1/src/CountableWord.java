@@ -31,6 +31,10 @@ public class CountableWord {
         if (count > 0) count--;
     }
 
+    public boolean isEmpty() {
+        return count == 0;
+    }
+
     // 두 CountableWord 객체가 같은지 비교합니다.
     // 내부의 word(단어)가 같으면 같은 것으로 간주합니다.
     @Override
