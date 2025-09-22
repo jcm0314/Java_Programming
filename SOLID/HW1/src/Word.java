@@ -1,10 +1,12 @@
 // Word 클래스는 "단어" 하나를 표현하는 클래스입니다. (예: "apple")
 public class Word {
     // 실제 단어(문자열)를 저장하는 필드입니다.
+    // 실제 단어(문자열)를 저장하는 필드
     private final String value;
 
     // 생성자: Word 객체를 만들 때 단어(문자열)를 받아서 저장합니다.
-    public Word(String value) {
+    // 생성자: 단어를 받아서 저장합니다.
+    public Word(String value) { 
         this.value = value;
     }
 
