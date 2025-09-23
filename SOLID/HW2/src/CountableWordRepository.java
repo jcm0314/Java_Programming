@@ -1,4 +1,3 @@
-package HW2.src;
 /**
  * CountableWordRepository 클래스: 텍스트 처리 결과를 저장하고 관리하는 저장소
  * 

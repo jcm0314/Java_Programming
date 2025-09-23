@@ -1,4 +1,3 @@
-package HW2.src;
 /**
  * ConsolePrinter 클래스: 저장소에 있는 데이터를 콘솔에 출력하는 클래스
  * 

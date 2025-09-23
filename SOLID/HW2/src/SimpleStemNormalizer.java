@@ -1,4 +1,3 @@
-package HW2.src;
 /**
  * SimpleStemNormalizer 클래스: 간단한 형태소 분석을 수행하는 클래스
  * 

@@ -1,5 +1,3 @@
-package HW2.src;
-
 /**
  * App 클래스: 텍스트 처리 파이프라인을 실행하는 메인 클래스
  * 
@@ -10,15 +8,8 @@ package HW2.src;
  * 각 파이프라인의 결과를 초성별로 그룹화하여 빈도를 계산합니다.
  */
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
-import java.util.Map;
 
-import java.util.*;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class App {
     // CSV 파일 경로 상수 (현재는 사용하지 않음)
@@ -36,15 +27,13 @@ public class App {
     public static void main(String[] args) throws IOException {
         // 테스트용 텍스트 데이터
         // 다양한 언어(영어, 한글), 특수문자, 악센트가 포함된 단어들을 포함
-		String text = """
-			Quick, brown FOX!! jumps over 13 lazy dogs.
-			QUICK—brown—fox; (NFKC: "quotes", full-width ＡＢＣ, 
-			café, naïve)
-			You're reading O'Reilly's book... Visit 
-			https://example.com/docs.
-			Email: test@example.org, #hashtag @handle
-			미나 프로그래밍—좋아요! ３가지 항목:\tone, two, three.
-			""";
+		String text = "Quick, brown FOX!! jumps over 13 lazy dogs. " +
+			"QUICK—brown—fox; (NFKC: \"quotes\", full-width ＡＢＣ, " +
+			"café, naïve) " +
+			"You're reading O'Reilly's book... Visit " +
+			"https://example.com/docs. " +
+			"Email: test@example.org, #hashtag @handle " +
+			"미나 프로그래밍—좋아요! ３가지 항목:\tone, two, three.";
 
         // ===== 파이프라인 1 설정 =====
         // 정규화 순서: NFKC → 소문자화+공백제거

@@ -1,4 +1,3 @@
-package HW2.src;
 /**
  * Word 클래스: 하나의 단어를 표현하는 불변(immutable) 클래스
  * 

@@ -1,4 +1,3 @@
-package HW2.src;
 /**
  * LowercaseTrimTextNormalizer 클래스: 텍스트를 소문자로 변환하고 앞뒤 공백을 제거하는 클래스
  * 

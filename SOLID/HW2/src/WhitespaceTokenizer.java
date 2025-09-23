@@ -1,4 +1,3 @@
-package HW2.src;
 /**
  * WhitespaceTokenizer 클래스: 공백만을 기준으로 텍스트를 토큰으로 분리하는 클래스
  * 

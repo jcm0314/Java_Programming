@@ -1,4 +1,3 @@
-package HW2.src;
 /**
  * RegexTokenizer 클래스: 정규식을 사용하여 텍스트를 토큰으로 분리하는 클래스
  * 

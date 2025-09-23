@@ -1,4 +1,3 @@
-package HW2.src;
 /**
  * CountableWord 클래스: 단어와 그 단어의 등장 횟수를 함께 관리하는 클래스
  * 
