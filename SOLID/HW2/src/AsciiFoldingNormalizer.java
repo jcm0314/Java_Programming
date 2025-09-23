@@ -1,3 +1,4 @@
+package HW2.src;
 /**
  * AsciiFoldingNormalizer 클래스: 악센트/다이어크리틱을 제거하면서 한글은 보존하는 클래스
  * 

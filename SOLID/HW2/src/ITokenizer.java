@@ -1,3 +1,4 @@
+package HW2.src;
 /**
  * ITokenizer 인터페이스: 텍스트 토큰화 전략을 정의하는 인터페이스
  * 

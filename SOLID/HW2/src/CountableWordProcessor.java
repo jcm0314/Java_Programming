@@ -1,3 +1,4 @@
+package HW2.src;
 /**
  * CountableWordProcessor 클래스: 텍스트 처리 파이프라인의 전체 과정을 관리하는 클래스
  * 
