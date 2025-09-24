@@ -14,24 +14,24 @@ public class MainTest {
         Mitty o3 = new Mitty();
         
         // addObserver
-        swimmingCoach.subscribeObserver(o1);
-        swimmingCoach.subscribeObserver(o2);
-        swimmingCoach.subscribeObserver(o3);
+    swimmingCoach.subscribe(o1);
+    swimmingCoach.subscribe(o2);
+    swimmingCoach.subscribe(o3);
         // update
         swimmingCoach.lesson();
         System.out.println();
         
         // removeObserver
-        swimmingCoach.unsubscribeObserver(o2);
+    swimmingCoach.unsubscribe(o2);
         swimmingCoach.swim();
         System.out.println();
 
-        tennisCoach.subscribeObserver(o2);
-        tennisCoach.subscribeObserver(o3);
+    tennisCoach.subscribe(o2);
+    tennisCoach.subscribe(o3);
         tennisCoach.match();
         System.out.println();
 
-        tennisCoach.unsubscribeObserver(o2);
+    tennisCoach.unsubscribe(o2);
         tennisCoach.play();
 
     }

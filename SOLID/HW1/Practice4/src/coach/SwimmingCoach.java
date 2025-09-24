@@ -16,12 +16,12 @@ public class SwimmingCoach implements Coach {
     }
 
     @Override
-    public void subscribeObserver(Member m) {
+    public void subscribe(Member m) {
         members.add(m);
     }
 
     @Override
-    public void unsubscribeObserver(Member m) {
+    public void unsubscribe(Member m) {
         members.remove(m);
     }
 

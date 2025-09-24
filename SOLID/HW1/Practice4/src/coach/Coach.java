@@ -1,3 +1,5 @@
+package coach;
+
 // Coach 인터페이스는 옵저버 패턴의 'Subject' 역할입니다.
 // 즉, 알림을 받을 객체(Member)를 등록/제거/알림하는 기능을 정의합니다.
 public interface Coach {
