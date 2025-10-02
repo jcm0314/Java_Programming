@@ -8,3 +8,4 @@ public abstract class POIDecorator implements IPOI{
     public static POI unwrapPOI(IPOI node) {
         // 구현 예정
     }
+}

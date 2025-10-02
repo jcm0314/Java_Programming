@@ -53,6 +53,17 @@ public class POIGsonFileLoader {
         return result;
     }
 
+    public static List<IPOI> loadAsDecorated(String filePath) throws IOException {
+        List<IPOI> result = new ArrayList<>();
+        // 기존 parse 로직 재사용
+        // name/location 읽은 뒤:
+        IPOI base = new POI(name, new Location(latitude, longitude));
+        if (category != null) base = new CategoryPOIDecorator(base, category);
+        if (tags != null && !tags.isEmpty()) base = new HashtagPOIDecorator(base, tags.toArray(new String[0]));
+        result.add(base);
+        return result;
+    }
+
     /**
      * JSON 객체에서 Double 값을 읽어오는 헬퍼 메서드
      * 다양한 필드명과 데이터 타입을 지원 (primary 필드명, alternate 필드명)

@@ -19,6 +19,12 @@ public class Location {
         this.lon = lon; 
     }
 
+    public double getLat() {
+        return lat;
+    }
+    public double getLon() {
+        return lon;
+    }
     /**
      * Location 객체의 문자열 표현
      * @return "위도, 경도" 형태의 문자열
