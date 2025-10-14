@@ -8,18 +8,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-/**
- * POIGsonFileLoader 클래스
- * JSON 파일에서 POI (Point of Interest) 데이터를 로드하는 유틸리티 클래스
- * Gson 라이브러리를 사용하여 JSON 파싱 수행
- */
+
 public class POIGsonFileLoader {
-    /**
-     * JSON 파일에서 POI 목록을 로드
-     * @param filePath POI 데이터가 저장된 JSON 파일 경로
-     * @return POI 객체들의 리스트
-     * @throws java.io.IOException 파일 읽기 오류 시 발생
-     */
+
     public static List<POI> load(String filePath) throws java.io.IOException {
         List<POI> result = new ArrayList<>();
 
@@ -55,23 +46,53 @@ public class POIGsonFileLoader {
 
     public static List<IPOI> loadAsDecorated(String filePath) throws IOException {
         List<IPOI> result = new ArrayList<>();
-        // 기존 parse 로직 재사용
-        // name/location 읽은 뒤:
-        IPOI base = new POI(name, new Location(latitude, longitude));
-        if (category != null) base = new CategoryPOIDecorator(base, category);
-        if (tags != null && !tags.isEmpty()) base = new HashtagPOIDecorator(base, tags.toArray(new String[0]));
-        result.add(base);
+        try (FileReader reader = new FileReader(filePath)) {
+            JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
+            JsonArray poisArray = jsonObject.getAsJsonArray("pois");
+
+            for (JsonElement element : poisArray) {
+                JsonObject obj = element.getAsJsonObject();
+                String name = obj.get("name").getAsString();
+                JsonObject locObj = obj.getAsJsonObject("location");
+                if (locObj == null) continue;
+                Double lat = readDouble(locObj, "latitude", "lat");
+                Double lon = readDouble(locObj, "longitude", "lon");
+                if (lat == null || lon == null) continue;
+
+                IPOI base = new POI(name, new Location(lat, lon));
+
+                // category 데코레이터 적용
+                String category = null;
+                if (obj.has("category") && !obj.get("category").isJsonNull()) {
+                    category = obj.get("category").getAsString();
+                }
+                if (category != null && !category.isEmpty()) {
+                    base = new CategoryPOIDecorator(base, category);
+                }
+
+                // hashtags 데코레이터 적용
+                List<String> tags = new ArrayList<>();
+                if (obj.has("hashtags") && obj.get("hashtags").isJsonArray()) {
+                    JsonArray tagArr = obj.getAsJsonArray("hashtags");
+                    for (JsonElement tagElem : tagArr) {
+                        if (tagElem.isJsonPrimitive() && tagElem.getAsJsonPrimitive().isString()) {
+                            tags.add(tagElem.getAsString());
+                        }
+                    }
+                }
+                if (!tags.isEmpty()) {
+                    base = new HashtagPOIDecorator(base, tags.toArray(new String[0]));
+                }
+
+                result.add(base);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return result;
     }
 
-    /**
-     * JSON 객체에서 Double 값을 읽어오는 헬퍼 메서드
-     * 다양한 필드명과 데이터 타입을 지원 (primary 필드명, alternate 필드명)
-     * @param o JSON 객체
-     * @param primary 주요 필드명
-     * @param alternate 대체 필드명
-     * @return Double 값 또는 null (파싱 실패 시)
-     */
+
     private static Double readDouble(JsonObject o, String primary, String alternate) {
         // 주요 필드명으로 먼저 시도
         JsonElement e = o.get(primary);

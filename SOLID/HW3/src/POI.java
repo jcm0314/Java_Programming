@@ -1,19 +1,11 @@
-/**
- * POI (Point of Interest) 클래스
- * 관심지점 정보를 담는 데이터 클래스
- * 이름과 위치 정보를 포함
- */
+
 public class POI implements IPOI{
-    /** 관심지점 이름 */
+   // 관심지점 이름
     public final String name;
-    /** 관심지점의 위치 정보 */
+    // 관심지점의 위치 정보
     public final Location location;
 
-    /**
-     * POI 생성자
-     * @param name 관심지점 이름
-     * @param location 관심지점의 위치
-     */
+    // 이름과 위치 정보를 받아 저장
     public POI(String name, Location location) {
         this.name = name; 
         this.location = location;
@@ -23,4 +15,10 @@ public class POI implements IPOI{
     public String getInformation() {
         return name + " @ " + location;
     }
+
+    @Override
+    public String toString() {
+        return name + " @ " + location.lat + ", " + location.lon;
+    }
 }
+
